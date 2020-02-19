@@ -16,6 +16,7 @@ extension String
         let regex = try! NSRegularExpression(pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) == nil
     }
+    
 }
 
 extension UIViewController
@@ -26,6 +27,17 @@ extension UIViewController
         let action = UIAlertAction(title: "OK", style: .cancel)
         alert.addAction(action)
         present(alert, animated: true)
+    }
+    
+    func showAlertAction(withMessage message: String) {
+        
+        let alert = UIAlertController(title: GlobalFunctions.GlobalConstants.AppName, message: message, preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+
+            self.navigationController?.popViewController(animated: true)
+        }))
+        self.present(alert, animated: true)
     }
 }
 
